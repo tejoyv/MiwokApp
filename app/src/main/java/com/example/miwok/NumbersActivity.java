@@ -2,17 +2,23 @@ package com.example.miwok;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
+        mediaPlayer = MediaPlayer.create(this, R.raw.number_one);
 
         // Create an array of words
         ArrayList<Word_Class> words = new ArrayList<Word_Class>();
@@ -30,5 +36,13 @@ public class NumbersActivity extends AppCompatActivity {
         WordAdapter adapter = new WordAdapter(this,words,R.color.category_numbers);
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(adapter);
+
+        // audio played when user touches any list item
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mediaPlayer.start();
+            }
+        });
     }
 }
