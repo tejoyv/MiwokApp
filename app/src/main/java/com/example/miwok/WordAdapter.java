@@ -59,7 +59,6 @@ public class WordAdapter extends ArrayAdapter<Word_Class> {
         // set the background color of the text container view
         textContainer.setBackgroundColor(color);
 
-
         return listItemView;
     }
 }
